@@ -28,13 +28,11 @@ class GameScreen extends StatefulWidget {
 
   @override
   State<GameScreen> createState() => _GameScreenState();
-
 }
 
 class _GameScreenState extends State<GameScreen> {
   GameData _gameData = GameData.initial();
   final TextEditingController _controller = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +70,6 @@ class _GameScreenState extends State<GameScreen> {
             TextField(
               controller: _controller,
               keyboardType: TextInputType.number,
-
               decoration: const InputDecoration(
                 labelText: '숫자를 입력하세요 1 ~ 100',
                 labelStyle: TextStyle(color: Colors.white54),
@@ -111,7 +108,7 @@ class _GameScreenState extends State<GameScreen> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed:  null,
+                  onPressed: _gameData.isGameActive ? _resetGame : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red, // 원하는 색상으로 변경
                   ),
@@ -142,5 +139,12 @@ class _GameScreenState extends State<GameScreen> {
     if (kDebugMode) {
       print('랜덤 숫자: ${_gameData.randomNumber}');
     }
+  }
+
+  void _resetGame() {
+    setState(() {
+      _gameData = GameData.initial();
+      _controller.clear();
+    });
   }
 }
