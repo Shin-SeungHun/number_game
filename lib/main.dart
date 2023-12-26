@@ -137,7 +137,7 @@ class _GameScreenState extends State<GameScreen> {
       );
     });
     if (kDebugMode) {
-      print('랜덤 숫달: ${_gameData.randomNumber}');
+      print('랜덤 숫자: ${_gameData.randomNumber}');
     }
   }
 
