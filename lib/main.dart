@@ -85,6 +85,42 @@ class _GameScreenState extends State<GameScreen> {
               style: const TextStyle(color: Colors.white),
             ),
             const SizedBox(height: 16.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green, // 원하는 색상으로 변경
+                    // disabledBackgroundColor: Colors.white10
+                  ),
+                  child: const Text(
+                    '시작',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue, // 원하는 색상으로 변경
+                  ),
+                  child: const Text(
+                    '정답',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed:  null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red, // 원하는 색상으로 변경
+                  ),
+                  child: const Text(
+                    '초기화',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
