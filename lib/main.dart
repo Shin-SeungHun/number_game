@@ -98,7 +98,7 @@ class _GameScreenState extends State<GameScreen> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: null,
+                  onPressed: _gameData.isGameActive ? _checkNumber : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue, // 원하는 색상으로 변경
                   ),
@@ -146,5 +146,40 @@ class _GameScreenState extends State<GameScreen> {
       _gameData = GameData.initial();
       _controller.clear();
     });
+  }
+
+  void _checkNumber() {
+    if (_gameData.lifeCount > 0) {
+      int? inputNumber = int.tryParse(_controller.text);
+
+      if (inputNumber == null) {
+        return;
+      }
+
+      _gameData = _gameData.copyWith(lifeCount: _gameData.lifeCount - 1);
+
+      if (inputNumber > _gameData.randomNumber) {
+        _gameData = _gameData.copyWith(
+          resultText: '${_gameData.min} ~ $inputNumber',
+          max: inputNumber,
+        );
+      } else if (inputNumber < _gameData.randomNumber) {
+        _gameData = _gameData.copyWith(
+          resultText: '$inputNumber ~ ${_gameData.max}',
+          min: inputNumber,
+        );
+      } else {
+        _gameData = _gameData.copyWith(
+          resultText: '정답: $inputNumber',
+          isGameActive: false,
+        );
+      }
+
+      _controller.clear();
+      setState(() {});
+    } else {
+      _gameData = _gameData.copyWith(isGameActive: false);
+      setState(() {});
+    }
   }
 }
