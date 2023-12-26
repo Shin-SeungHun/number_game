@@ -153,6 +153,7 @@ class _GameScreenState extends State<GameScreen> {
       int? inputNumber = int.tryParse(_controller.text);
 
       if (inputNumber == null) {
+        _showToast('숫자를 입력하세요');
         return;
       }
 
@@ -173,13 +174,24 @@ class _GameScreenState extends State<GameScreen> {
           resultText: '정답: $inputNumber',
           isGameActive: false,
         );
+        _showToast('정답입니다.');
       }
 
       _controller.clear();
       setState(() {});
     } else {
+      _showToast('게임 종료');
       _gameData = _gameData.copyWith(isGameActive: false);
       setState(() {});
     }
+  }
+
+  void _showToast(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: const Duration(seconds: 3),
+      ),
+    );
   }
 }
