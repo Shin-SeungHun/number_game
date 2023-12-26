@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'model/game_data.dart';
@@ -89,7 +90,7 @@ class _GameScreenState extends State<GameScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: null,
+                  onPressed: _gameData.isGameActive ? null : _startGame,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green, // 원하는 색상으로 변경
                     // disabledBackgroundColor: Colors.white10
@@ -125,5 +126,21 @@ class _GameScreenState extends State<GameScreen> {
         ),
       ),
     );
+  }
+
+  void _startGame() {
+    setState(() {
+      _gameData = _gameData.copyWith(
+        isGameActive: true,
+        randomNumber: _gameData.generateRandomNumber(),
+        min: 1,
+        max: 100,
+        lifeCount: 10,
+        resultText: '${_gameData.min} ~ ${_gameData.max}',
+      );
+    });
+    if (kDebugMode) {
+      print('랜덤 숫자: ${_gameData.randomNumber}');
+    }
   }
 }
