@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +27,6 @@ class _GameScreenState extends State<GameScreen> {
         backgroundColor: const Color(0xFF212d3b),
       ),
       body: SizedBox(
-        height: 350,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -49,7 +47,7 @@ class _GameScreenState extends State<GameScreen> {
             ),
             const SizedBox(height: 16.0),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(16.0),
               child: TextField(
                 controller: _controller,
                 keyboardType: TextInputType.number,
@@ -67,40 +65,46 @@ class _GameScreenState extends State<GameScreen> {
               ),
             ),
             const SizedBox(height: 16.0),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: _gameData.isGameActive ? _resetGame : null,
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red, // 원하는 색상으로 변경
-                      disabledBackgroundColor: Colors.white10),
-                  child: const Text(
-                    '초기화',
-                    style: TextStyle(color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ElevatedButton(
+                    onPressed: _gameData.isGameActive ? _resetGame : null,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      disabledBackgroundColor: Colors.grey,
+                    ),
+                    child: const Text(
+                      '초기화',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
-                ),
-                ElevatedButton(
-                  onPressed: _gameData.isGameActive ? null : _startGame,
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green, // 원하는 색상으로 변경
-                      disabledBackgroundColor: Colors.white10),
-                  child: const Text(
-                    '시작',
-                    style: TextStyle(color: Colors.white),
+                  ElevatedButton(
+                    onPressed: _gameData.isGameActive ? null : _startGame,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      disabledBackgroundColor: Colors.grey,
+                    ),
+                    child: const Text(
+                      '시작',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
-                ),
-                ElevatedButton(
-                  onPressed: _gameData.isGameActive ? _checkNumber : null,
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue, // 원하는 색상으로 변경
-                      disabledBackgroundColor: Colors.white10),
-                  child: const Text(
-                    '정답',
-                    style: TextStyle(color: Colors.white),
+                  ElevatedButton(
+                    onPressed: _gameData.isGameActive ? _checkNumber : null,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      disabledBackgroundColor: Colors.grey,
+                    ),
+                    child: const Text(
+                      '정답',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
